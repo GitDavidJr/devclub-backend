@@ -62,7 +62,7 @@ app.delete("/usuarios/:id", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Hello World, rodrigo");
 });
 
 app.listen(port)
