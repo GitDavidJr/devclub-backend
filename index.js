@@ -37,7 +37,7 @@ app.put("/usuarios/:id", async (req, res) => {
 
     data: {
       email: req.body.email,
-      name: req.body.email,
+      name: req.body.name,
       age: req.body.age,
     },
   });
@@ -61,6 +61,8 @@ app.delete("/usuarios/:id", async (req, res) => {
   res.status(200).json({ message: "Usuario deletado" });
 });
 
-app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
+
+app.listen(port)
