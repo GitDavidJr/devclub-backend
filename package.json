@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": "14.x"
+    "node": "22.x"
   },
   "main": "server.js",
   "scripts": {
