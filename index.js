@@ -4,16 +4,16 @@ login: davidjr
 senha: EgcL37qkFUw1ZsS9
 */
 import express from "express";
-import cors from 'cors'
+import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const app = express();
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3001;
 
 app.post("/usuarios", async (req, res) => {
   await prisma.user.create({
@@ -46,7 +46,17 @@ app.put("/usuarios/:id", async (req, res) => {
 });
 
 app.get("/usuarios", async (req, res) => {
-  const users = await prisma.user.findMany();
+  let users = [];
+  
+  if (req.query) {
+    users = await prisma.user.findMany({
+      where:{
+        id: req.query.id
+      }
+    });
+  } else {
+    users = await prisma.user.findMany();
+  }
 
   res.status(200).json(users);
 });
@@ -65,4 +75,6 @@ app.get("/", (req, res) => {
   res.send("Hello World, rodrigo");
 });
 
-app.listen(port)
+console.log(port)
+
+app.listen(port);
